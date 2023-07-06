@@ -12,15 +12,18 @@ let linhas = '';
 form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    adicionaLinha();
+    if (nome.includes(inputNomeContato.value)) {
+        alert(`O contato "${inputNomeContato.value}" já foi salvo!`);
+    } else if (numero.includes(inputNumeroContato.value)){
+        alert(`O número "${inputNumeroContato.value}" já foi salvo em outro contato!`);
+    }else {
+        adicionaLinha()
+    }
+
     atualizaTabela();
 });
 
 function adicionaLinha() {
-
-    if (nome.includes(inputNomeContato.value)) {
-        alert(`O contato "${inputNomeContato.value}" já foi salvo!`);
-    } else {
         nome.push(inputNomeContato.value);
         numero.push(inputNumeroContato.value);
     
@@ -32,7 +35,6 @@ function adicionaLinha() {
         linha += '</tr>';
     
         linhas += linha;
-    }
 
     inputNomeContato.value = '';
     inputDDDContato.value = '';
